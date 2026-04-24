@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMIVUE — النظارات الفاخرة | Lunettes de Luxe au Maroc</title>
+<meta name="description" content="LUMIVUE — Votre destination premium pour lunettes de vue, solaires et lentilles. Marques mondiales. Livraison partout au Maroc. نظاراتك الفاخرة في المغرب.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Tajawal:wght@300;400;500;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --noir: #0d0d0d;
+  --noir2: #1a1a1a;
+  --blanc: #fafaf8;
+  --beige: #f5f0e8;
+  --beige2: #ede6d6;
+  --gold: #b8965a;
+  --gold2: #d4aa6e;
+  --gold3: #f0c97a;
+  --text: #1a1a1a;
+  --muted: #6b6560;
+  --light: #9a938b;
+  --border: rgba(184,150,90,0.2);
+  --border2: rgba(184,150,90,0.4);
+  --font-display: 'Cormorant Garamond', serif;
+  --font-ar: 'Tajawal', sans-serif;
+  --font-fr: 'Jost', sans-serif;
+  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--blanc);
+  color: var(--text);
+  font-family: var(--font-ar);
+  overflow-x: hidden;
+  cursor: none;
+}
+body * { cursor: none; }
+a { text-decoration: none; color: inherit; }
+
+/* Custom Cursor */
+#cursor {
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  mix-blend-mode: multiply;
+}
+#cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.18s cubic-bezier(0.25,0.46,0.45,0.94), width 0.3s, height 0.3s, border-color 0.3s;
+  opacity: 0.6;
+}
+body:hover #cursor { opacity: 1; }
+
+/* TOP BAR */
+.topbar {
+  background: var(--noir);
+  color: rgba(255,255,255,0.75);
+  font-family: var(--font-fr);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(184,150,90,0.15);
+}
+.topbar-inner {
+  max-width: 1400px; margin: 0 auto; padding: 0 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.topbar span { color: var(--gold2); }
+.topbar-links { display: flex; gap: 1.5rem; }
+.topbar-links a { color: rgba(255,255,255,0.65); font-size: 0.7rem; letter-spacing: 0.08em; transition: color 0.2s; }
+.topbar-links a:hover { color: var(--gold2); }
+
+/* NAVBAR */
+nav {
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(250,250,248,0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px;
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.06); }
+
+.logo-wrap { display: flex; flex-direction: column; align-items: flex-end; }
+.logo-name {
+  font-family: var(--font-display);
+  font-size: 1.9rem; font-weight: 600;
+  letter-spacing: 0.22em; color: var(--noir);
+  line-height: 1;
+}
+.logo-tagline {
+  font-family: var(--font-fr);
+  font-size: 0.58rem; letter-spacing: 0.25em;
+  color: var(--gold); text-transform: uppercase;
+  font-weight: 500;
+}
+
+.nav-center { display: flex; gap: 0.2rem; }
+.nav-item {
+  position: relative;
+  font-family: var(--font-fr);
+  font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text); padding: 0.5rem 1rem;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+.nav-item:hover { color: var(--gold); }
+.nav-item::after {
+  content: ''; position: absolute; bottom: -1px; left: 1rem; right: 1rem;
+  height: 1px; background: var(--gold);
+  transform: scaleX(0); transition: transform 0.3s;
+}
+.nav-item:hover::after { transform: scaleX(1); }
+.nav-item.has-mega:hover .mega-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+
+/* MEGA MENU */
+.mega-menu {
+  position: absolute; top: calc(100% + 1px); left: 50%; transform: translateX(-50%) translateY(8px);
+  background: var(--blanc);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--gold);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  min-width: 520px; padding: 2rem;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  opacity: 0; visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 2000;
+}
+.mega-col h4 {
+  font-family: var(--font-fr); font-size: 0.65rem; letter-spacing: 0.2em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 1rem;
+  padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+}
+.mega-col a {
+  display: block; font-family: var(--font-fr); font-size: 0.8rem;
+  color: var(--muted); padding: 0.3rem 0; letter-spacing: 0.04em;
+  transition: color 0.2s, padding-right 0.2s;
+}
+.mega-col a:hover { color: var(--gold); padding-right: 0.5rem; }
+
+.nav-icons { display: flex; align-items: center; gap: 1.2rem; }
+.nav-icon-btn {
+  background: none; border: none; color: var(--text);
+  font-size: 1.1rem; position: relative; padding: 0.3rem;
+  transition: color 0.2s;
+}
+.nav-icon-btn:hover { color: var(--gold); }
+.badge {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--gold); color: var(--blanc);
+  font-size: 0.55rem; font-weight: 700; font-family: var(--font-fr);
+  width: 16px; height: 16px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* LANG TOGGLE */
+.lang-toggle {
+  font-family: var(--font-fr); font-size: 0.7rem; letter-spacing: 0.1em;
+  border: 1px solid var(--border2); border-radius: 2px;
+  padding: 0.3rem 0.7rem; color: var(--gold);
+  background: none; cursor: none;
+  transition: all 0.2s;
+}
+.lang-toggle:hover { background: var(--gold); color: var(--blanc); }
+
+/* HERO */
+.hero {
+  height: 100vh; min-height: 700px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  background: var(--noir);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1510 50%, #0d0d0d 100%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: 
+    linear-gradient(rgba(184,150,90,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,150,90,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-circle {
+  position: absolute; right: -200px; top: 50%; transform: translateY(-50%);
+  width: 700px; height: 700px; border-radius: 50%;
+  border: 1px solid rgba(184,150,90,0.08);
+  animation: rotate 40s linear infinite;
+}
+.hero-circle::before {
+  content: ''; position: absolute; inset: 40px; border-radius: 50%;
+  border: 1px solid rgba(184,150,90,0.06);
+}
+@keyframes rotate { to { transform: translateY(-50%) rotate(360deg); } }
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1400px; margin: 0 auto; padding: 0 4rem;
+  width: 100%;
+}
+.hero-eyebrow {
+  font-family: var(--font-fr); font-size: 0.7rem; letter-spacing: 0.3em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-eyebrow::before {
+  content: ''; width: 40px; height: 1px; background: var(--gold); flex-shrink: 0;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 300; line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--blanc); margin-bottom: 0.5rem;
+  opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title em { color: var(--gold2); font-style: italic; }
+.hero-title-ar {
+  font-family: var(--font-ar);
+  font-size: clamp(1.5rem, 3.5vw, 3.2rem);
+  font-weight: 300; color: rgba(255,255,255,0.5);
+  margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+}
+.hero-desc {
+  font-family: var(--font-fr); font-size: 1rem; font-weight: 300;
+  color: rgba(255,255,255,0.55); line-height: 1.8; max-width: 420px;
+  margin-bottom: 3rem;
+  opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+}
+.btn-gold {
+  background: var(--gold);
+  color: var(--noir); border: none;
+  font-family: var(--font-fr); font-size: 0.75rem; letter-spacing: 0.15em;
+  text-transform: uppercase; font-weight: 600;
+  padding: 1rem 2.5rem; cursor: none;
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.btn-gold::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gold3);
+  transform: translateX(-100%); transition: transform 0.3s;
+}
+.btn-gold:hover::before { transform: translateX(0); }
+.btn-gold span { position: relative; z-index: 1; }
+.btn-outline-white {
+  background: transparent;
+  color: rgba(255,255,255,0.8); 
+  border: 1px solid rgba(255,255,255,0.2);
+  font-family: var(--font-fr); font-size: 0.75rem; letter-spacing: 0.15em;
+  text-transform: uppercase; font-weight: 400;
+  padding: 1rem 2.5rem; cursor: none;
+  transition: all 0.3s;
+}
+.btn-outline-white:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-stats {
+  position: absolute; bottom: 3rem; right: 4rem; z-index: 2;
+  display: flex; gap: 3rem;
+  opacity: 0; animation: fadeUp 0.8s 1s forwards;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: var(--font-display); font-size: 2.2rem; font-weight: 300;
+  color: var(--gold2); line-height: 1;
+}
+.hero-stat-label {
+  font-family: var(--font-fr); font-size: 0.62rem; letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.4); text-transform: uppercase; margin-top: 0.3rem;
+}
+.hero-scroll {
+  position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
+  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  animation: float 2s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-6px)} }
+.hero-scroll span { font-family: var(--font-fr); font-size: 0.6rem; letter-spacing: 0.25em; color: rgba(255,255,255,0.35); text-transform: uppercase; }
+.hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+/* TRUST BAR */
+.trust-bar {
+  background: var(--beige);
+  border-bottom: 1px solid var(--border);
+  padding: 1.2rem 0;
+  overflow: hidden;
+}
+.trust-inner {
+  display: flex; gap: 4rem; align-items: center;
+  padding: 0 3rem; justify-content: center; flex-wrap: wrap;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-fr); font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--muted); white-space: nowrap;
+}
+.trust-item svg { color: var(--gold); }
+.trust-icon { font-size: 1rem; color: var(--gold); }
+
+/* SECTION GENERIC */
+.section { padding: 7rem 0; }
+.section-inner { max-width: 1400px; margin: 0 auto; padding: 0 3rem; }
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-eyebrow {
+  font-family: var(--font-fr); font-size: 0.67rem; letter-spacing: 0.28em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 0.8rem;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+}
+.section-eyebrow::before, .section-eyebrow::after {
+  content: ''; width: 30px; height: 1px; background: var(--gold); flex-shrink: 0;
+}
+.section-title {
+  font-family: var(--font-display); font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 300; letter-spacing: -0.01em; margin-bottom: 0.5rem;
+  color: var(--noir);
+}
+.section-title-ar {
+  font-family: var(--font-ar); font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 300; color: var(--light); margin-bottom: 1rem;
+}
+.section-sub {
+  font-family: var(--font-fr); font-size: 0.9rem; color: var(--muted);
+  max-width: 500px; margin: 0 auto; line-height: 1.8; font-weight: 300;
+}
+
+/* CATEGORIES */
+.categories-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: 480px 300px;
+  gap: 1.2rem;
+}
+.cat-card {
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-end;
+  padding: 2.5rem;
+  background: var(--noir2);
+  transition: transform 0.4s;
+}
+.cat-card:hover { transform: scale(0.99); }
+.cat-card:first-child { grid-row: 1 / 3; }
+.cat-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform var(--transition);
+  filter: brightness(0.5);
+}
+.cat-card:hover .cat-bg { transform: scale(1.04); }
+.cat-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
+}
+.cat-content { position: relative; z-index: 1; }
+.cat-label {
+  font-family: var(--font-fr); font-size: 0.65rem; letter-spacing: 0.25em;
+  color: var(--gold2); text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.cat-title {
+  font-family: var(--font-display); font-size: 2rem; font-weight: 400;
+  color: var(--blanc); margin-bottom: 0.3rem; line-height: 1.1;
+}
+.cat-title-ar { font-family: var(--font-ar); font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 1rem; }
+.cat-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-fr); font-size: 0.7rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold);
+  border-bottom: 1px solid rgba(184,150,90,0.3);
+  padding-bottom: 0.2rem;
+  transition: border-color 0.2s;
+}
+.cat-card:hover .cat-btn { border-color: var(--gold); }
+.cat-bg-1 { background: linear-gradient(135deg, #2a1f0f 0%, #1a1510 100%); background-image: url('https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&q=80'); }
+.cat-bg-2 { background: linear-gradient(135deg, #0f1a2a 0%, #101520 100%); background-image: url('https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=800&q=80'); }
+.cat-bg-3 { background: linear-gradient(135deg, #1a0f1a 0%, #15101a 100%); background-image: url('https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=800&q=80'); }
+
+/* BRANDS */
+.brands-section { background: var(--beige); }
+.brands-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 0;
+  border: 1px solid var(--border);
+}
+.brand-item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 2.5rem 1.5rem; border: 1px solid var(--border);
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.brand-item::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gold); opacity: 0; transition: opacity 0.3s;
+}
+.brand-item:hover::before { opacity: 0.04; }
+.brand-item:hover { border-color: var(--gold2); }
+.brand-logo-text {
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 600;
+  letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase;
+  transition: color 0.3s; position: relative; z-index: 1;
+}
+.brand-item:hover .brand-logo-text { color: var(--gold); }
+.brand-sub { font-family: var(--font-fr); font-size: 0.6rem; letter-spacing: 0.12em; color: var(--light); margin-top: 0.3rem; position: relative; z-index: 1; }
+
+/* PRODUCTS */
+.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.product-card {
+  position: relative; overflow: hidden;
+  background: var(--blanc);
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+.product-card:hover { border-color: var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.06); }
+.product-img-wrap {
+  aspect-ratio: 1/1; background: var(--beige);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.product-img-placeholder {
+  font-size: 4rem; opacity: 0.15;
+  transition: transform 0.5s;
+}
+.product-card:hover .product-img-placeholder { transform: scale(1.05) rotate(-3deg); }
+.product-actions {
+  position: absolute; top: 1rem; right: 1rem;
+  display: flex; flex-direction: column; gap: 0.4rem;
+  opacity: 0; transform: translateX(10px);
+  transition: all 0.3s;
+}
+.product-card:hover .product-actions { opacity: 1; transform: translateX(0); }
+.product-action-btn {
+  width: 36px; height: 36px; background: var(--blanc);
+  border: 1px solid var(--border); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; transition: all 0.2s;
+}
+.product-action-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--blanc); }
+.product-badge {
+  position: absolute; top: 1rem; left: 1rem;
+  font-family: var(--font-fr); font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 0.2rem 0.6rem;
+  font-weight: 600;
+}
+.badge-new { background: var(--noir); color: var(--gold); }
+.badge-sale { background: var(--gold); color: var(--noir); }
+.product-info { padding: 1.2rem; }
+.product-brand { font-family: var(--font-fr); font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.3rem; }
+.product-name { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; color: var(--noir); margin-bottom: 0.2rem; }
+.product-name-ar { font-family: var(--font-ar); font-size: 0.8rem; color: var(--light); margin-bottom: 0.8rem; }
+.product-price-row { display: flex; align-items: center; justify-content: space-between; }
+.product-price { font-family: var(--font-display); font-size: 1.3rem; font-weight: 400; color: var(--noir); }
+.product-price-old { font-family: var(--font-fr); font-size: 0.82rem; color: var(--light); text-decoration: line-through; }
+.product-price-currency { font-family: var(--font-fr); font-size: 0.7rem; color: var(--muted); }
+.product-add-btn {
+  background: none; border: 1px solid var(--border2);
+  color: var(--gold); font-family: var(--font-fr); font-size: 0.65rem;
+  letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.8rem;
+  transition: all 0.25s; cursor: none;
+}
+.product-add-btn:hover { background: var(--gold); color: var(--blanc); border-color: var(--gold); }
+
+/* OFFERS */
+.offers-section { background: var(--noir); color: var(--blanc); }
+.offers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.offer-card {
+  background: var(--noir2); padding: 4rem; position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.offer-card:hover { background: #1f1c15; }
+.offer-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0); transition: transform 0.4s;
+}
+.offer-card:hover::before { transform: scaleX(1); }
+.offer-pct {
+  font-family: var(--font-display); font-size: 6rem; font-weight: 300;
+  color: var(--gold); line-height: 1; margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+.offer-title { font-family: var(--font-display); font-size: 1.8rem; color: var(--blanc); margin-bottom: 0.5rem; }
+.offer-title-ar { font-family: var(--font-ar); font-size: 1rem; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; }
+.offer-desc { font-family: var(--font-fr); font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 2rem; font-weight: 300; }
+.offer-timer { display: flex; gap: 1rem; margin-bottom: 2rem; }
+.timer-unit { text-align: center; }
+.timer-num { font-family: var(--font-display); font-size: 2rem; color: var(--gold2); }
+.timer-label { font-family: var(--font-fr); font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); text-transform: uppercase; }
+.timer-sep { font-family: var(--font-display); font-size: 1.5rem; color: var(--gold); align-self: flex-start; padding-top: 0.2rem; }
+
+/* PRESCRIPTION */
+.prescription-section { background: var(--beige); }
+.prescription-card {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  background: var(--blanc); border: 1px solid var(--border); padding: 4rem;
+}
+.presc-icon { font-size: 5rem; margin-bottom: 1.5rem; opacity: 0.6; }
+.presc-title { font-family: var(--font-display); font-size: 2.2rem; font-weight: 300; margin-bottom: 0.5rem; }
+.presc-title-ar { font-family: var(--font-ar); font-size: 1.1rem; color: var(--muted); margin-bottom: 1.5rem; }
+.presc-desc { font-family: var(--font-fr); font-size: 0.88rem; color: var(--muted); line-height: 1.8; font-weight: 300; margin-bottom: 2rem; }
+.upload-zone {
+  border: 2px dashed var(--border2); padding: 3rem; text-align: center;
+  transition: all 0.3s; cursor: none;
+}
+.upload-zone:hover { border-color: var(--gold); background: rgba(184,150,90,0.04); }
+.upload-icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.5; }
+.upload-text { font-family: var(--font-fr); font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+.upload-text strong { color: var(--gold); font-weight: 500; }
+
+/* STORES */
+.stores-section { background: var(--noir); color: var(--blanc); }
+.stores-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(184,150,90,0.1); }
+.store-card { background: var(--noir2); padding: 2.5rem; transition: background 0.3s; }
+.store-card:hover { background: #1a1710; }
+.store-city { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; color: var(--gold2); margin-bottom: 0.3rem; }
+.store-city-ar { font-family: var(--font-ar); font-size: 0.9rem; color: rgba(255,255,255,0.4); margin-bottom: 1.2rem; }
+.store-detail { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.8rem; }
+.store-detail-icon { color: var(--gold); font-size: 0.85rem; flex-shrink: 0; margin-top: 0.1rem; }
+.store-detail-text { font-family: var(--font-fr); font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+.store-link { font-family: var(--font-fr); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid rgba(184,150,90,0.3); padding-bottom: 0.1rem; display: inline-block; margin-top: 1rem; transition: border-color 0.2s; }
+.store-card:hover .store-link { border-color: var(--gold); }
+
+/* BOOKING */
+.booking-section { background: var(--beige2); }
+.booking-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center; }
+.booking-form { background: var(--blanc); border: 1px solid var(--border); padding: 3rem; }
+.form-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; margin-bottom: 0.3rem; }
+.form-title-ar { font-family: var(--font-ar); font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+.form-label { font-family: var(--font-fr); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.form-input {
+  border: 1px solid var(--border); background: var(--blanc); padding: 0.8rem 1rem;
+  font-family: var(--font-fr); font-size: 0.88rem; color: var(--text);
+  transition: border-color 0.2s; outline: none;
+}
+.form-input:focus { border-color: var(--gold); }
+.form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8965a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 1rem center; }
+.btn-gold-full { width: 100%; background: var(--gold); color: var(--noir); border: none; font-family: var(--font-fr); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; padding: 1rem; cursor: none; transition: background 0.2s; }
+.btn-gold-full:hover { background: var(--gold3); }
+
+/* REVIEWS */
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.review-card { background: var(--blanc); border: 1px solid var(--border); padding: 2rem; }
+.review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+.review-text { font-family: var(--font-ar); font-size: 0.88rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; font-style: italic; }
+.review-text-fr { font-family: var(--font-fr); font-size: 0.78rem; color: var(--light); line-height: 1.7; margin-bottom: 1.2rem; font-style: italic; }
+.reviewer { display: flex; align-items: center; gap: 0.8rem; }
+.reviewer-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--beige2); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 1rem; color: var(--gold);
+}
+.reviewer-name { font-family: var(--font-ar); font-size: 0.85rem; font-weight: 500; }
+.reviewer-city { font-family: var(--font-fr); font-size: 0.68rem; color: var(--light); letter-spacing: 0.08em; }
+
+/* NEWSLETTER */
+.newsletter-section {
+  background: var(--noir); padding: 5rem 0;
+  border-top: 1px solid rgba(184,150,90,0.1);
+}
+.newsletter-inner { max-width: 600px; margin: 0 auto; text-align: center; padding: 0 2rem; }
+.newsletter-title { font-family: var(--font-display); font-size: 2.2rem; font-weight: 300; color: var(--blanc); margin-bottom: 0.5rem; }
+.newsletter-title-ar { font-family: var(--font-ar); font-size: 1rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; }
+.newsletter-sub { font-family: var(--font-fr); font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-bottom: 2rem; font-weight: 300; line-height: 1.7; }
+.newsletter-form { display: flex; gap: 0; border: 1px solid var(--border); }
+.newsletter-input { flex: 1; background: transparent; border: none; padding: 1rem 1.2rem; font-family: var(--font-fr); font-size: 0.85rem; color: var(--blanc); outline: none; direction: ltr; }
+.newsletter-input::placeholder { color: rgba(255,255,255,0.25); }
+.newsletter-btn { background: var(--gold); color: var(--noir); border: none; font-family: var(--font-fr); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; padding: 1rem 1.8rem; cursor: none; transition: background 0.2s; white-space: nowrap; }
+.newsletter-btn:hover { background: var(--gold3); }
+
+/* FOOTER */
+footer {
+  background: #0a0a08;
+  border-top: 1px solid rgba(184,150,90,0.1);
+  color: rgba(255,255,255,0.4);
+}
+.footer-top {
+  max-width: 1400px; margin: 0 auto; padding: 5rem 3rem 3rem;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 3rem;
+}
+.footer-brand .logo-name { color: var(--blanc); font-size: 1.5rem; }
+.footer-brand-text { font-family: var(--font-fr); font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.8; margin-top: 1rem; font-weight: 300; }
+.footer-brand-text-ar { font-family: var(--font-ar); font-size: 0.78rem; color: rgba(255,255,255,0.25); line-height: 1.8; margin-top: 0.5rem; }
+.footer-social { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+.social-btn { width: 34px; height: 34px; border: 1px solid rgba(184,150,90,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: rgba(255,255,255,0.35); transition: all 0.2s; }
+.social-btn:hover { border-color: var(--gold); color: var(--gold); }
+.footer-col h5 { font-family: var(--font-fr); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+.footer-col a { display: block; font-family: var(--font-fr); font-size: 0.78rem; color: rgba(255,255,255,0.35); padding: 0.25rem 0; transition: color 0.2s; letter-spacing: 0.03em; }
+.footer-col a:hover { color: var(--gold2); }
+.footer-bottom {
+  border-top: 1px solid rgba(184,150,90,0.08);
+  padding: 1.5rem 3rem;
+  max-width: 1400px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-fr); font-size: 0.68rem; letter-spacing: 0.06em;
+}
+.payment-icons { display: flex; gap: 0.6rem; }
+.pay-badge { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); padding: 0.2rem 0.6rem; font-size: 0.6rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); }
+
+/* WHATSAPP */
+.whatsapp-btn {
+  position: fixed; bottom: 2rem; left: 2rem; z-index: 999;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #25D366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: transform 0.2s; cursor: none;
+  animation: waPulse 2s ease-in-out infinite;
+}
+.whatsapp-btn:hover { transform: scale(1.1); }
+@keyframes waPulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)} 50%{box-shadow:0 4px 30px rgba(37,211,102,0.7)} }
+
+/* SEARCH OVERLAY */
+.search-overlay {
+  position: fixed; inset: 0; background: rgba(10,10,8,0.95);
+  z-index: 10000; display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: all 0.3s;
+}
+.search-overlay.active { opacity: 1; visibility: visible; }
+.search-box { width: 90%; max-width: 600px; }
+.search-input-big {
+  width: 100%; background: transparent; border: none; border-bottom: 2px solid var(--gold);
+  font-family: var(--font-display); font-size: 2.5rem; color: var(--blanc); outline: none;
+  padding: 1rem 0; text-align: right; letter-spacing: 0.02em;
+}
+.search-input-big::placeholder { color: rgba(255,255,255,0.2); }
+.search-hint { font-family: var(--font-fr); font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 1rem; letter-spacing: 0.08em; }
+.search-close { position: absolute; top: 2rem; right: 2rem; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 1.5rem; cursor: none; transition: color 0.2s; }
+.search-close:hover { color: var(--gold); }
+
+/* QUICK VIEW MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(10,10,8,0.8);
+  z-index: 9000; display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: all 0.3s;
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-box {
+  background: var(--blanc); max-width: 800px; width: 90%;
+  display: grid; grid-template-columns: 1fr 1fr;
+  max-height: 90vh; overflow: auto;
+  transform: translateY(20px); transition: transform 0.3s;
+}
+.modal-overlay.active .modal-box { transform: translateY(0); }
+.modal-img { background: var(--beige); display: flex; align-items: center; justify-content: center; font-size: 6rem; opacity: 0.2; }
+.modal-content { padding: 3rem; }
+.modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.2rem; cursor: none; }
+
+/* CART SIDEBAR */
+.cart-sidebar {
+  position: fixed; left: 0; top: 0; height: 100%; width: 380px;
+  background: var(--blanc); box-shadow: 4px 0 40px rgba(0,0,0,0.15);
+  z-index: 9500; transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  display: flex; flex-direction: column;
+}
+.cart-sidebar.open { transform: translateX(0); }
+.cart-header { padding: 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.cart-header-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; }
+.cart-body { flex: 1; overflow-y: auto; padding: 1.5rem; }
+.cart-empty { text-align: center; padding: 3rem; color: var(--muted); }
+.cart-empty-icon { font-size: 3rem; opacity: 0.2; margin-bottom: 1rem; }
+.cart-empty-text { font-family: var(--font-fr); font-size: 0.85rem; color: var(--light); }
+.cart-footer { padding: 1.5rem; border-top: 1px solid var(--border); }
+.cart-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.cart-total-label { font-family: var(--font-fr); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.cart-total-price { font-family: var(--font-display); font-size: 1.8rem; color: var(--gold); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 1.2rem; }
+  .nav-center { display: none; }
+  .topbar-inner { flex-direction: column; gap: 0.3rem; }
+  .hero-content { padding: 0 1.5rem; }
+  .hero-stats { right: 1.5rem; gap: 1.5rem; }
+  .categories-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .cat-card:first-child { grid-row: auto; }
+  .brands-grid { grid-template-columns: repeat(3, 1fr); }
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+  .offers-grid { grid-template-columns: 1fr; }
+  .stores-grid { grid-template-columns: 1fr; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .booking-inner { grid-template-columns: 1fr; }
+  .prescription-card { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  .section-inner { padding: 0 1.2rem; }
+  .section { padding: 4rem 0; }
+  .cart-sidebar { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <button class="search-close" onclick="toggleSearch()">✕</button>
+  <div class="search-box">
+    <div style="font-family:var(--font-fr);font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;">Recherche / بحث</div>
+    <input class="search-input-big" type="text" placeholder="Rechercher un produit...">
+    <div class="search-hint">Ray-Ban, Prada, Gucci, Oakley, Tom Ford... · نظارة طبية، شمسية، عدسات</div>
+  </div>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <div>
+      <div class="cart-header-title">Mon Panier</div>
+      <div style="font-family:var(--font-ar);font-size:0.8rem;color:var(--muted);">سلة المشتريات</div>
+    </div>
+    <button style="background:none;border:none;font-size:1.2rem;cursor:none;" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-body">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🕶️</div>
+      <div class="cart-empty-text">Votre panier est vide</div>
+      <div style="font-family:var(--font-ar);font-size:0.8rem;color:var(--light);margin-top:0.3rem;">سلة الشراء فارغة</div>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <div class="cart-total-label">Total</div>
+      <div class="cart-total-price">0 <span style="font-size:0.9rem;color:var(--muted);">MAD</span></div>
+    </div>
+    <button class="btn-gold-full" style="margin-bottom:0.8rem;">Passer la commande — إتمام الطلب</button>
+    <div style="text-align:center;font-family:var(--font-fr);font-size:0.7rem;color:var(--light);margin-top:0.8rem;">
+      🔒 Paiement 100% sécurisé · CMI · Stripe · PayPal · Livraison à domicile
+    </div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>✦ Livraison offerte dès 500 MAD — توصيل مجاني من 500 درهم ✦</span>
+    <div class="topbar-links">
+      <a href="#">FR</a>
+      <a href="#">العربية</a>
+      <a href="#">📍 Nos Magasins</a>
+      <a href="#">📞 +212 6XX XXX XXX</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <!-- Logo right -->
+  <div class="logo-wrap">
+    <div class="logo-name">LUMIVUE</div>
+    <div class="logo-tagline">Excellence Optique · التميز البصري</div>
+  </div>
+
+  <!-- Center menu -->
+  <div class="nav-center">
+    <div class="nav-item has-mega">
+      Lunettes de Vue
+      <div class="mega-menu">
+        <div class="mega-col">
+          <h4>Pour Elle</h4>
+          <a href="#">Carrées</a><a href="#">Rondes</a><a href="#">Cat-Eye</a><a href="#">Papillon</a><a href="#">Ovales</a>
+        </div>
+        <div class="mega-col">
+          <h4>Pour Lui</h4>
+          <a href="#">Rectangulaires</a><a href="#">Rondes</a><a href="#">Aviateurs</a><a href="#">Wayfarer</a><a href="#">Sport</a>
+        </div>
+        <div class="mega-col">
+          <h4>Enfants</h4>
+          <a href="#">3–8 ans</a><a href="#">8–12 ans</a><a href="#">Ados</a><a href="#">Flexibles</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-item has-mega">
+      Solaires
+      <div class="mega-menu">
+        <div class="mega-col">
+          <h4>Styles</h4>
+          <a href="#">Aviateur</a><a href="#">Wayfarer</a><a href="#">Sportives</a><a href="#">Oversized</a>
+        </div>
+        <div class="mega-col">
+          <h4>Marques</h4>
+          <a href="#">Ray-Ban</a><a href="#">Gucci</a><a href="#">Prada</a><a href="#">Oakley</a>
+        </div>
+        <div class="mega-col">
+          <h4>Protection</h4>
+          <a href="#">UV400</a><a href="#">Polarisées</a><a href="#">Miroir</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-item">Lentilles</div>
+    <div class="nav-item has-mega">
+      Marques
+      <div class="mega-menu" style="grid-template-columns:repeat(2,1fr);">
+        <div class="mega-col">
+          <h4>Luxe</h4>
+          <a href="#">Ray-Ban</a><a href="#">Prada</a><a href="#">Gucci</a><a href="#">Tom Ford</a><a href="#">Versace</a>
+        </div>
+        <div class="mega-col">
+          <h4>Sport & Lifestyle</h4>
+          <a href="#">Oakley</a><a href="#">Nike Vision</a><a href="#">Lacoste</a><a href="#">Police</a><a href="#">Carrera</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-item" style="color:var(--gold);">Offres</div>
+  </div>
+
+  <!-- Icons left -->
+  <div class="nav-icons">
+    <button class="nav-icon-btn" onclick="toggleSearch()" title="Rechercher">🔍</button>
+    <button class="nav-icon-btn" title="Favoris">♡
+      <span class="badge">2</span>
+    </button>
+    <button class="nav-icon-btn" onclick="toggleCart()" title="Panier">🛍
+      <span class="badge">0</span>
+    </button>
+    <button class="lang-toggle">FR / ع</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-circle"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Collection Printemps–Été 2025</div>
+    <h1 class="hero-title">
+      Voir le Monde<br>
+      Avec <em>Élégance</em>
+    </h1>
+    <div class="hero-title-ar">انظر للعالم بأناقة فائقة</div>
+    <p class="hero-desc">Les plus grandes marques mondiales de lunettes. Conseil optique personnalisé. Livraison à domicile partout au Maroc.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-gold"><span>Découvrir la Collection →</span></a>
+      <a href="#" class="btn-outline-white">Réserver un Examen</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">500+</div>
+      <div class="hero-stat-label">Modèles</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">15+</div>
+      <div class="hero-stat-label">Marques</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">8</div>
+      <div class="hero-stat-label">Villes Maroc</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Défiler</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="trust-icon">🚚</span> Livraison 24–48h partout au Maroc</div>
+    <div class="trust-item"><span class="trust-icon">↩️</span> Retour gratuit 30 jours</div>
+    <div class="trust-item"><span class="trust-icon">🔒</span> Paiement 100% Sécurisé</div>
+    <div class="trust-item"><span class="trust-icon">🏪</span> 8 Magasins physiques</div>
+    <div class="trust-item"><span class="trust-icon">👁️</span> Examen de vue gratuit</div>
+    <div class="trust-item"><span class="trust-icon">✦</span> 100% Authentique</div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section" style="background:var(--beige);">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Nos Collections</div>
+      <h2 class="section-title">Explorez Notre Univers</h2>
+      <div class="section-title-ar">اكتشف عالمنا من الأناقة البصرية</div>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-card">
+        <div class="cat-bg cat-bg-1"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-label">Collection Premium</div>
+          <div class="cat-title">Lunettes<br>de Vue</div>
+          <div class="cat-title-ar">النظارات الطبية</div>
+          <a href="#" class="cat-btn">Voir la collection ↗</a>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-bg cat-bg-2"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-label">UV400 · Polarisées</div>
+          <div class="cat-title">Lunettes<br>Solaires</div>
+          <div class="cat-title-ar">النظارات الشمسية</div>
+          <a href="#" class="cat-btn">Découvrir ↗</a>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-bg cat-bg-3"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-label">Confort & Liberté</div>
+          <div class="cat-title">Lentilles<br>de Contact</div>
+          <div class="cat-title-ar">العدسات اللاصقة</div>
+          <a href="#" class="cat-btn">Explorer ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="section brands-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Marques Officielles</div>
+      <h2 class="section-title">Les Plus Grandes Maisons</h2>
+      <div class="section-title-ar">أكبر العلامات التجارية العالمية</div>
+    </div>
+    <div class="brands-grid">
+      <div class="brand-item"><div class="brand-logo-text">Ray-Ban</div><div class="brand-sub">Since 1937</div></div>
+      <div class="brand-item"><div class="brand-logo-text">Prada</div><div class="brand-sub">Milano</div></div>
+      <div class="brand-item"><div class="brand-logo-text">Gucci</div><div class="brand-sub">Firenze</div></div>
+      <div class="brand-item"><div class="brand-logo-text">Tom Ford</div><div class="brand-sub">New York</div></div>
+      <div class="brand-item"><div class="brand-logo-text">Oakley</div><div class="brand-sub">Sport</div></div>
+      <div class="brand-item"><div class="brand-logo-text">Versace</div><div class="brand-sub">Milano</div></div>
+      <div class="brand-item"><div class="brand-logo-text">Carrera</div><div class="brand-sub">Austria</div></div>
+      <div class="brand-item"><div class="brand-logo-text">Lacoste</div><div class="brand-sub">Paris</div></div>
+      <div class="brand-item"><div class="brand-logo-text">Police</div><div class="brand-sub">Lifestyle</div></div>
+      <div class="brand-item"><div class="brand-logo-text">Nike</div><div class="brand-sub">Vision</div></div>
+      <div class="brand-item"><div class="brand-logo-text">Silhouette</div><div class="brand-sub">Austria</div></div>
+      <div class="brand-item" style="background:linear-gradient(135deg,rgba(184,150,90,0.04),transparent);border-color:var(--border2);">
+        <div class="brand-logo-text" style="color:var(--gold);">+50</div>
+        <div class="brand-sub">Autres Marques</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Sélection du Moment</div>
+      <h2 class="section-title">Nos Bestsellers</h2>
+      <div class="section-title-ar">الأكثر مبيعاً هذا الموسم</div>
+      <p class="section-sub">Les modèles les plus recherchés par nos clients au Maroc</p>
+    </div>
+    <div class="products-grid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <div class="product-img-placeholder">🕶️</div>
+          <div class="product-actions">
+            <div class="product-action-btn" title="Favoris">♡</div>
+            <div class="product-action-btn" title="Quick View">👁</div>
+            <div class="product-action-btn" title="Comparer">⇄</div>
+          </div>
+          <div class="product-badge badge-new">New</div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Ray-Ban</div>
+          <div class="product-name">Aviator Classic</div>
+          <div class="product-name-ar">أفياتور الكلاسيكي</div>
+          <div class="product-price-row">
+            <div>
+              <div class="product-price">1 290 <span class="product-price-currency">MAD</span></div>
+            </div>
+            <button class="product-add-btn">+ Panier</button>
+          </div>
+        </div>
+      </div>
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="product-img-wrap" style="background:#f0ede6;">
+          <div class="product-img-placeholder">👓</div>
+          <div class="product-actions">
+            <div class="product-action-btn">♡</div>
+            <div class="product-action-btn">👁</div>
+            <div class="product-action-btn">⇄</div>
+          </div>
+          <div class="product-badge badge-sale">-30%</div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Prada</div>
+          <div class="product-name">Linea Rossa</div>
+          <div class="product-name-ar">لينيا روسا</div>
+          <div class="product-price-row">
+            <div>
+              <div class="product-price">2 150 <span class="product-price-currency">MAD</span></div>
+              <div class="product-price-old">3 070 MAD</div>
+            </div>
+            <button class="product-add-btn">+ Panier</button>
+          </div>
+        </div>
+      </div>
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="product-img-wrap" style="background:#ede8e0;">
+          <div class="product-img-placeholder">🕶️</div>
+          <div class="product-actions">
+            <div class="product-action-btn">♡</div>
+            <div class="product-action-btn">👁</div>
+            <div class="product-action-btn">⇄</div>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Tom Ford</div>
+          <div class="product-name">Snowdon</div>
+          <div class="product-name-ar">سنودان</div>
+          <div class="product-price-row">
+            <div>
+              <div class="product-price">3 490 <span class="product-price-currency">MAD</span></div>
+            </div>
+            <button class="product-add-btn">+ Panier</button>
+          </div>
+        </div>
+      </div>
+      <!-- Product 4 -->
+      <div class="product-card">
+        <div class="product-img-wrap" style="background:#eaecee;">
+          <div class="product-img-placeholder">👓</div>
+          <div class="product-actions">
+            <div class="product-action-btn">♡</div>
+            <div class="product-action-btn">👁</div>
+            <div class="product-action-btn">⇄</div>
+          </div>
+          <div class="product-badge badge-new">Exclu</div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Gucci</div>
+          <div class="product-name">GG0396S</div>
+          <div class="product-name-ar">غوتشي الكلاسيك</div>
+          <div class="product-price-row">
+            <div>
+              <div class="product-price">4 200 <span class="product-price-currency">MAD</span></div>
+            </div>
+            <button class="product-add-btn">+ Panier</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="#" class="btn-gold"><span>Voir tous les produits — عرض كل المنتجات →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERS / PROMO -->
+<section class="section offers-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow" style="color:var(--gold);">Promotions Exclusives</div>
+      <h2 class="section-title" style="color:var(--blanc);">Offres Spéciales</h2>
+      <div class="section-title-ar" style="color:rgba(255,255,255,0.35);">عروض خاصة وتخفيضات حصرية</div>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card">
+        <div class="offer-pct">-30%</div>
+        <div class="offer-title">Lunettes Solaires</div>
+        <div class="offer-title-ar">النظارات الشمسية</div>
+        <p class="offer-desc">Sur toute la collection solaire Ray-Ban & Oakley. Offre limitée, profitez-en vite !</p>
+        <div class="offer-timer" id="timer1">
+          <div class="timer-unit"><div class="timer-num" id="d1">02</div><div class="timer-label">Jours</div></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-unit"><div class="timer-num" id="h1">14</div><div class="timer-label">Heures</div></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-unit"><div class="timer-num" id="m1">33</div><div class="timer-label">Min</div></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-unit"><div class="timer-num" id="s1">00</div><div class="timer-label">Sec</div></div>
+        </div>
+        <a href="#" class="btn-gold"><span>Profiter de l'offre →</span></a>
+      </div>
+      <div class="offer-card">
+        <div class="offer-pct">2+1</div>
+        <div class="offer-title">Lentilles Contact</div>
+        <div class="offer-title-ar">العدسات اللاصقة</div>
+        <p class="offer-desc">Achetez 2 boîtes de lentilles, obtenez la 3ème gratuitement. Valable sur toutes les marques.</p>
+        <div style="margin-bottom:2rem;padding:1.2rem;border:1px solid rgba(184,150,90,0.15);">
+          <div style="font-family:var(--font-fr);font-size:0.7rem;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;margin-bottom:0.5rem;">Marques éligibles</div>
+          <div style="font-family:var(--font-fr);font-size:0.82rem;color:rgba(255,255,255,0.45);">Acuvue · Air Optix · Dailies · Biofinity · Proclear</div>
+        </div>
+        <a href="#" class="btn-outline-white">Voir les Lentilles →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESCRIPTION UPLOAD -->
+<section class="section prescription-section">
+  <div class="section-inner">
+    <div class="prescription-card">
+      <div>
+        <div class="presc-icon">📋</div>
+        <h2 class="presc-title">Envoyez votre Ordonnance</h2>
+        <div class="presc-title-ar">أرسل وصفتك الطبية</div>
+        <p class="presc-desc">Téléchargez votre prescription médicale et notre équipe d'opticiens certifiés s'occupe de tout. Vos lunettes livrées à domicile en 48h.</p>
+        <div style="display:flex;flex-direction:column;gap:0.8rem;margin-bottom:2rem;">
+          <div class="trust-item"><span class="trust-icon">✓</span> <span style="font-family:var(--font-fr);font-size:0.82rem;color:var(--muted);">Opticiens diplômés d'État</span></div>
+          <div class="trust-item"><span class="trust-icon">✓</span> <span style="font-family:var(--font-fr);font-size:0.82rem;color:var(--muted);">Vérification gratuite de votre ordonnance</span></div>
+          <div class="trust-item"><span class="trust-icon">✓</span> <span style="font-family:var(--font-ar);font-size:0.82rem;color:var(--muted);">ضمان 1 سنة على العدسات</span></div>
+        </div>
+        <a href="#" class="btn-gold"><span>Réserver un Examen Gratuit →</span></a>
+      </div>
+      <div>
+        <div class="upload-zone">
+          <div class="upload-icon">📄</div>
+          <div class="upload-text">
+            <strong>Glissez votre ordonnance ici</strong><br>
+            ou cliquez pour choisir un fichier<br>
+            <span style="font-size:0.72rem;color:var(--light);">PDF, JPG, PNG — Max 10MB</span><br><br>
+            <span style="font-family:var(--font-ar);">أو أرسلها عبر واتساب مباشرة</span>
+          </div>
+        </div>
+        <div style="margin-top:1.2rem;text-align:center;">
+          <div style="font-family:var(--font-fr);font-size:0.75rem;color:var(--muted);margin-bottom:0.5rem;">Ou envoyez par WhatsApp</div>
+          <a href="#" style="display:inline-flex;align-items:center;gap:0.5rem;background:#25D366;color:#fff;padding:0.7rem 1.5rem;font-family:var(--font-fr);font-size:0.78rem;letter-spacing:0.08em;">
+            📱 WhatsApp: +212 6XX XXX XXX
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORES -->
+<section class="section stores-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow" style="color:var(--gold);">Présence Nationale</div>
+      <h2 class="section-title" style="color:var(--blanc);">Nos Magasins au Maroc</h2>
+      <div class="section-title-ar" style="color:rgba(255,255,255,0.35);">فروعنا في جميع أنحاء المغرب</div>
+    </div>
+    <div class="stores-grid">
+      <div class="store-card">
+        <div class="store-city">Casablanca</div>
+        <div class="store-city-ar">الدار البيضاء</div>
+        <div class="store-detail"><div class="store-detail-icon">📍</div><div class="store-detail-text">Maarif Center, Bd Zerktouni, 2ème étage</div></div>
+        <div class="store-detail"><div class="store-detail-icon">🕐</div><div class="store-detail-text">Lun–Sam: 9h–20h · Dim: 10h–18h</div></div>
+        <div class="store-detail"><div class="store-detail-icon">📞</div><div class="store-detail-text">+212 522 XXX XXX</div></div>
+        <a href="#" class="store-link">Itinéraire ↗</a>
+      </div>
+      <div class="store-card">
+        <div class="store-city">Rabat</div>
+        <div class="store-city-ar">الرباط</div>
+        <div class="store-detail"><div class="store-detail-icon">📍</div><div class="store-detail-text">Hay Riad, Avenue Annakhil</div></div>
+        <div class="store-detail"><div class="store-detail-icon">🕐</div><div class="store-detail-text">Lun–Sam: 9h–20h · Dim: 10h–18h</div></div>
+        <div class="store-detail"><div class="store-detail-icon">📞</div><div class="store-detail-text">+212 537 XXX XXX</div></div>
+        <a href="#" class="store-link">Itinéraire ↗</a>
+      </div>
+      <div class="store-card">
+        <div class="store-city">Marrakech</div>
+        <div class="store-city-ar">مراكش</div>
+        <div class="store-detail"><div class="store-detail-icon">📍</div><div class="store-detail-text">Menara Mall, Niveau 1</div></div>
+        <div class="store-detail"><div class="store-detail-icon">🕐</div><div class="store-detail-text">Tous les jours: 10h–22h</div></div>
+        <div class="store-detail"><div class="store-detail-icon">📞</div><div class="store-detail-text">+212 524 XXX XXX</div></div>
+        <a href="#" class="store-link">Itinéraire ↗</a>
+      </div>
+      <div class="store-card">
+        <div class="store-city">Fès</div>
+        <div class="store-city-ar">فاس</div>
+        <div class="store-detail"><div class="store-detail-icon">📍</div><div class="store-detail-text">Bd Mohammed V, Centre-ville</div></div>
+        <div class="store-detail"><div class="store-detail-icon">🕐</div><div class="store-detail-text">Lun–Sam: 9h–19h30</div></div>
+        <div class="store-detail"><div class="store-detail-icon">📞</div><div class="store-detail-text">+212 535 XXX XXX</div></div>
+        <a href="#" class="store-link">Itinéraire ↗</a>
+      </div>
+      <div class="store-card">
+        <div class="store-city">Tanger</div>
+        <div class="store-city-ar">طنجة</div>
+        <div class="store-detail"><div class="store-detail-icon">📍</div><div class="store-detail-text">Grand Socco, Rue de la Liberté</div></div>
+        <div class="store-detail"><div class="store-detail-icon">🕐</div><div class="store-detail-text">Lun–Sam: 9h–20h</div></div>
+        <div class="store-detail"><div class="store-detail-icon">📞</div><div class="store-detail-text">+212 539 XXX XXX</div></div>
+        <a href="#" class="store-link">Itinéraire ↗</a>
+      </div>
+      <div class="store-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px dashed rgba(184,150,90,0.2);">
+        <div style="font-family:var(--font-display);font-size:2.5rem;color:var(--gold);opacity:0.3;margin-bottom:1rem;">+3</div>
+        <div style="font-family:var(--font-fr);font-size:0.8rem;color:rgba(255,255,255,0.35);">Agadir · Oujda · Meknès</div>
+        <a href="#" class="store-link" style="margin-top:1rem;">Tous nos magasins ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="section booking-section">
+  <div class="section-inner">
+    <div class="booking-inner">
+      <div>
+        <div class="section-eyebrow" style="justify-content:flex-start;">
+          <span style="width:30px;height:1px;background:var(--gold);flex-shrink:0;"></span>
+          Examen de Vue
+        </div>
+        <h2 class="section-title">Réservez votre<br>Examen Gratuit</h2>
+        <div class="section-title-ar">احجز فحص نظرك المجاني</div>
+        <p class="section-sub" style="margin:0 0 2rem;text-align:right;">Nos opticiens certifiés sont à votre disposition dans tous nos magasins. Examen complet offert sans rendez-vous ou sur réservation.</p>
+        <div style="display:flex;flex-direction:column;gap:1.2rem;">
+          <div class="trust-item"><span class="trust-icon">👁️</span> <div><div style="font-family:var(--font-fr);font-size:0.82rem;font-weight:500;">Examen de vue complet</div><div style="font-family:var(--font-ar);font-size:0.75rem;color:var(--muted);">فحص شامل للنظر — مجاناً</div></div></div>
+          <div class="trust-item"><span class="trust-icon">📋</span> <div><div style="font-family:var(--font-fr);font-size:0.82rem;font-weight:500;">Ordonnance en 15 minutes</div><div style="font-family:var(--font-ar);font-size:0.75rem;color:var(--muted);">الوصفة الطبية في 15 دقيقة</div></div></div>
+          <div class="trust-item"><span class="trust-icon">🏆</span> <div><div style="font-family:var(--font-fr);font-size:0.82rem;font-weight:500;">Opticiens diplômés d'État</div><div style="font-family:var(--font-ar);font-size:0.75rem;color:var(--muted);">بصريون معتمدون ومرخصون</div></div></div>
+        </div>
+      </div>
+      <div class="booking-form">
+        <div class="form-title">Prendre Rendez-vous</div>
+        <div class="form-title-ar">حجز موعد فحص النظر</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Prénom</label>
+            <input type="text" class="form-input" placeholder="Votre prénom">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nom</label>
+            <input type="text" class="form-input" placeholder="Votre nom">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Téléphone / الهاتف</label>
+          <input type="tel" class="form-input" placeholder="+212 6XX XXX XXX" dir="ltr">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ville / المدينة</label>
+          <select class="form-input form-select">
+            <option>Casablanca</option>
+            <option>Rabat</option>
+            <option>Marrakech</option>
+            <option>Fès</option>
+            <option>Tanger</option>
+            <option>Agadir</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Heure</label>
+            <select class="form-input form-select">
+              <option>09:00</option><option>10:00</option><option>11:00</option>
+              <option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-gold-full">Confirmer le Rendez-vous — تأكيد الحجز</button>
+        <div style="text-align:center;font-family:var(--font-fr);font-size:0.7rem;color:var(--light);margin-top:1rem;">Examen 100% gratuit — فحص مجاني تماماً</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" style="background:var(--beige);">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Témoignages</div>
+      <h2 class="section-title">Ce que Disent nos Clients</h2>
+      <div class="section-title-ar">آراء عملائنا الكرام</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:0.8rem;">
+        <span style="color:var(--gold);font-size:1.1rem;">★★★★★</span>
+        <span style="font-family:var(--font-fr);font-size:0.85rem;color:var(--muted);">4.9/5 — 1 247 avis vérifiés</span>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"خدمة ممتازة وجودة عالية جداً. اشتريت نظارة Ray-Ban وكانت أصلية 100%. التوصيل في اليوم التالي!"</p>
+        <p class="review-text-fr">"Service excellent, lunettes authentiques livrées en 24h. Je recommande vivement !"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">ي.م</div>
+          <div>
+            <div class="reviewer-name">يوسف المنصوري</div>
+            <div class="reviewer-city">Casablanca · ✓ Achat vérifié</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"فحص النظر مجاني والخدمة محترفة جداً. الموظفون متخصصون ويساعدونك في اختيار النظارة المناسبة."</p>
+        <p class="review-text-fr">"Examen gratuit et professionnel. Le personnel m'a très bien conseillée pour le choix des verres."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">س.ب</div>
+          <div>
+            <div class="reviewer-name">سلمى بنعيسى</div>
+            <div class="reviewer-city">Rabat · ✓ Achat vérifié</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"اشتريت نظارة Tom Ford وكانت أحسن من توقعاتي. التغليف فاخر والجودة رائعة. شكراً LUMIVUE!"</p>
+        <p class="review-text-fr">"Tom Ford d'une qualité exceptionnelle, emballage luxueux, service client au top !"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">ك.ع</div>
+          <div>
+            <div class="reviewer-name">كريم العلوي</div>
+            <div class="reviewer-city">Marrakech · ✓ Achat vérifié</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-section">
+  <div class="newsletter-inner">
+    <h2 class="newsletter-title">Restez Inspiré</h2>
+    <div class="newsletter-title-ar">ابق على اطلاع بآخر أخبارنا</div>
+    <p class="newsletter-sub">Nouvelles collections, offres exclusives et conseils optique. Rejoignez +15 000 abonnés au Maroc.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" placeholder="votre@email.com" dir="ltr">
+      <button class="newsletter-btn">S'abonner →</button>
+    </div>
+    <div style="font-family:var(--font-fr);font-size:0.65rem;color:rgba(255,255,255,0.2);margin-top:1rem;letter-spacing:0.06em;">
+      En vous inscrivant, vous acceptez de recevoir nos offres. Désinscription à tout moment.
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-wrap" style="align-items:flex-start;">
+        <div class="logo-name" style="color:var(--blanc);">LUMIVUE</div>
+        <div class="logo-tagline">Excellence Optique · التميز البصري</div>
+      </div>
+      <p class="footer-brand-text">Votre destination premium pour lunettes de vue, solaires et lentilles au Maroc. Marques mondiales authentiques. Opticiens certifiés.</p>
+      <p class="footer-brand-text-ar">وجهتكم المتميزة للنظارات الطبية والشمسية والعدسات اللاصقة في المغرب.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">📸</a>
+        <a href="#" class="social-btn">▶️</a>
+        <a href="#" class="social-btn">🐦</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Boutique</h5>
+      <a href="#">Lunettes de Vue</a>
+      <a href="#">Lunettes Solaires</a>
+      <a href="#">Lentilles Contact</a>
+      <a href="#">Accessoires</a>
+      <a href="#">Nos Marques</a>
+      <a href="#">Offres Spéciales</a>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <a href="#">Examen de Vue Gratuit</a>
+      <a href="#">Upload Ordonnance</a>
+      <a href="#">Livraison Express</a>
+      <a href="#">Retour Facile</a>
+      <a href="#">SAV & Garantie</a>
+      <a href="#">Réparations</a>
+    </div>
+    <div class="footer-col">
+      <h5>Informations</h5>
+      <a href="#">Qui Sommes-Nous</a>
+      <a href="#">Nos Magasins</a>
+      <a href="#">Blog Optique</a>
+      <a href="#">FAQ</a>
+      <a href="#">Partenariats</a>
+      <a href="#">Carrières</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <a href="#">+212 6XX XXX XXX</a>
+      <a href="#">contact@lumivue.ma</a>
+      <a href="#">WhatsApp</a>
+      <a href="#">Chat en Direct</a>
+      <a href="#">حجز موعد</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2025 LUMIVUE. Tous droits réservés. · جميع الحقوق محفوظة</div>
+    <div class="payment-icons">
+      <div class="pay-badge">CMI</div>
+      <div class="pay-badge">Stripe</div>
+      <div class="pay-badge">PayPal</div>
+      <div class="pay-badge">À la livraison</div>
+    </div>
+    <div>
+      <a href="#" style="color:rgba(255,255,255,0.3);margin-left:1rem;font-size:0.68rem;letter-spacing:0.06em;">Confidentialité</a>
+      <a href="#" style="color:rgba(255,255,255,0.3);margin-left:1rem;font-size:0.68rem;letter-spacing:0.06em;">CGV</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/212600000000" class="whatsapp-btn" title="WhatsApp">💬</a>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button, .product-card, .cat-card, .brand-item, .nav-item').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '16px'; cursor.style.height = '16px';
+    ring.style.width = '50px'; ring.style.height = '50px';
+    ring.style.borderColor = 'var(--gold2)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '10px'; cursor.style.height = '10px';
+    ring.style.width = '36px'; ring.style.height = '36px';
+    ring.style.borderColor = 'var(--gold)';
+  });
+});
+
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Search toggle
+function toggleSearch() {
+  document.getElementById('searchOverlay').classList.toggle('active');
+  if (document.getElementById('searchOverlay').classList.contains('active')) {
+    setTimeout(() => document.querySelector('.search-input-big').focus(), 300);
+  }
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') { document.getElementById('searchOverlay').classList.remove('active'); document.getElementById('cartSidebar').classList.remove('open'); } });
+
+// Cart toggle
+function toggleCart() {
+  document.getElementById('cartSidebar').classList.toggle('open');
+}
+
+// Countdown timer
+function updateTimer() {
+  const now = new Date();
+  const end = new Date(now);
+  end.setHours(end.getHours() + 50, end.getMinutes() + 33);
+  let diff = 50 * 3600 + 33 * 60;
+  
+  function tick() {
+    if (diff <= 0) return;
+    diff--;
+    const d = Math.floor(diff / 86400);
+    const h = Math.floor((diff % 86400) / 3600);
+    const m = Math.floor((diff % 3600) / 60);
+    const s = diff % 60;
+    const fmt = n => String(n).padStart(2, '0');
+    if(document.getElementById('d1')) {
+      document.getElementById('d1').textContent = fmt(d);
+      document.getElementById('h1').textContent = fmt(h);
+      document.getElementById('m1').textContent = fmt(m);
+      document.getElementById('s1').textContent = fmt(s);
+    }
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+updateTimer();
+
+// Smooth reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.product-card, .feat-card, .store-card, .review-card, .brand-item, .cat-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
